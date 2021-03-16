@@ -30,6 +30,15 @@ public class Bubble : MonoBehaviour
     float actualCircleLocalScaleMagnitude;
     bool isIntersects = false;
 
+    [Header("Bubble Position")]
+    Vector3 currentBubblePos;
+    bool isBubblePosChange;
+
+    [Header("Player Health")]
+    [SerializeField] GameObject playerGameObject;
+    [SerializeField] float playerHealth = 100f;
+    [SerializeField] float healthDecreaseRate = 1f;
+    [SerializeField] float healthIncreaseRate = 20f;
 
     void Start()
     {
@@ -37,6 +46,8 @@ public class Bubble : MonoBehaviour
 
         //Set up bubble spawners
         SetUpBubbleSpawnBoundaries();
+
+        currentBubblePos = new Vector3(transform.position.x, transform.position.y);
     }
 
     void Update()
@@ -49,22 +60,27 @@ public class Bubble : MonoBehaviour
 
         //On mouse up bubble will be destroyed
         OnMouseUpDestroy();
+
+        BubbleChangePosition();
+
+        DestroyPlayer();
     }
 
     private void OnMouseUpDestroy()
     {
+
         if (Input.GetMouseButtonUp(0))
         {
             //We can clearly see actual circle local scale magnitude after we release left mouse button
             Debug.Log(actualCircleLocalScaleMagnitude);
             Debug.Log(isIntersects);
+            //Debug.Log(isBubbleDestroyed);
             //If player intersects and hit min or max range distruction bubble will be destroyed
             if (isIntersects == true && (ActualCircleLocalScaleMagnitude() > minRangeDistruction) && (ActualCircleLocalScaleMagnitude() < bubbleMagnitude))
             {
                 gameObject.transform.position = SetUpNewRandomPosition();
             }
         }
-
     }
     private float ActualCircleLocalScaleMagnitude()
     {
@@ -103,5 +119,31 @@ public class Bubble : MonoBehaviour
         newRandomPos = new Vector3(randomX, randomY, transform.position.z);
 
         return newRandomPos;
+    } 
+
+    public bool BubbleChangePosition()
+    {
+        if (currentBubblePos != newRandomPos)
+        {
+            currentBubblePos = newRandomPos;
+            playerHealth += healthIncreaseRate;
+            isBubblePosChange = true;
+        }
+        else
+        {
+            playerHealth -= healthDecreaseRate * Time.deltaTime;
+            isBubblePosChange = false;
+            Debug.Log(playerHealth);
+        }
+        return isBubblePosChange;
     }
+
+    private void DestroyPlayer()
+    {
+        if (playerHealth <= 0)
+        {
+            Destroy(playerGameObject);
+        }
+    }
+        
 }

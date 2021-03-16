@@ -15,7 +15,10 @@ public class Player : MonoBehaviour
     float yMax;
 
     [Header("Player")]
-    [SerializeField] float movementSpeed = 1;
+    [SerializeField] float movementSpeed = 1f;
+    [SerializeField] float health = 100f;
+    [SerializeField] float healthDecreaseRateInSec = 1f;
+    [SerializeField] float healthIncreaseRate = 10f;
     bool isMouseLeftButtonDown = false;
 
     [Header("Circle")]
@@ -40,6 +43,7 @@ public class Player : MonoBehaviour
 
         //Player controls
         PlayerMouseControl();
+
     }
 
     private void OnMouseDown()
