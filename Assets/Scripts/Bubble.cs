@@ -30,10 +30,17 @@ public class Bubble : MonoBehaviour
     float actualCircleLocalScaleMagnitude;
     bool isIntersects = false;
 
+    [Header("Bubble Position")]
+    Vector3 currentBubblePositin;
+    Vector3 newBubblePosition;
+    bool isPositionChanged = false;
+
 
 
     void Start()
     {
+        currentBubblePositin = new Vector3(transform.position.x, transform.position.y); 
+
         bubbleMagnitude = transform.localScale.magnitude + maxRangeDistruction;
 
         //Set up bubble spawners
@@ -50,11 +57,13 @@ public class Bubble : MonoBehaviour
 
         //On mouse up bubble will be destroyed
         OnMouseUpDestroy();
+
+        newBubblePosition = new Vector3(transform.position.x, transform.position.y);
+        BubbleChangedPosition();
     }
 
     private void OnMouseUpDestroy()
     {
-
         if (Input.GetMouseButtonUp(0))
         {
             //We can clearly see actual circle local scale magnitude after we release left mouse button
@@ -105,4 +114,20 @@ public class Bubble : MonoBehaviour
 
         return newRandomPos;
     }
+
+    public bool BubbleChangedPosition()
+    {
+        if (currentBubblePositin != newBubblePosition)
+        {
+            currentBubblePositin = newBubblePosition;
+            isPositionChanged = true;
+            Debug.Log("I change position!");
+        }
+        else
+        {
+            isPositionChanged = false;
+        }
+        return isPositionChanged;
+    }
+
 }
