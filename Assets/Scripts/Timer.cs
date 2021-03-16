@@ -13,17 +13,13 @@ public class Timer : MonoBehaviour
     void Start()
     {
         timeText = GetComponent<Text>();
-        timerIsRunning = true;
+        GameStarts();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timerIsRunning)
-        {
-            currentTime += Time.deltaTime;
-        }
-
+        CurrentTime();
         DisplayTime(currentTime);
     }
 
@@ -33,5 +29,21 @@ public class Timer : MonoBehaviour
         float seconds = Mathf.FloorToInt(currentTime % 60);
 
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public float CurrentTime()
+    {
+        if (timerIsRunning)
+        {
+            currentTime += Time.deltaTime;
+        }
+
+        return currentTime;
+    }
+
+    public bool GameStarts()
+    {
+        timerIsRunning = true;
+        return timerIsRunning;
     }
 }
