@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //Config parameters
+    [Header("Configuration parameters")]
     [SerializeField] Transform circleObject;
 
-    //Boundaries parameters
+    [Header("Boundaries")]
     [SerializeField] float padding = 0.1f;
     float xMin;
     float xMax;
     float yMin;
     float yMax;
 
-    //Player parameters
+    [Header("Player")]
     [SerializeField] float movementSpeed = 1;
     bool isMouseLeftButtonDown = false;
 
-    //Circle parameters
+    [Header("Circle")]
     [SerializeField] Vector3 maxCircleLocalScale;
     float maxCirleLocalScaleMagnitude;
 

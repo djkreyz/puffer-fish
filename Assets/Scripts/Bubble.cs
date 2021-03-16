@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
-    //Config parameters
+    [Header("Configuration parameters")]
     [SerializeField] Renderer player;
     [SerializeField] Renderer bubbleCenter;
     [SerializeField] Transform circle;
 
-    //Bubble
+    [Header("Bubble")]
     float bubbleMagnitude;
     [SerializeField] [Range(1, 2)] float maxRangeDistruction;
     [SerializeField] [Range(1, 2)] float minRangeDistruction;
 
-    //Bubble spawn boundaries
+    [Header("Bubble Spawn Boundaries")]
     [SerializeField] float padding = 0.1f;
     float xMin;
     float xMax;
     float yMin;
     float yMax;
 
+    [Header("Bubble Random Spawn")]
     float randomX;
     float randomY;
     Vector3 newRandomPos;
 
-    //Circle
+    [Header("Circle Scale Magnitude")]
     float actualCircleLocalScaleMagnitude;
     bool isIntersects = false;
 
