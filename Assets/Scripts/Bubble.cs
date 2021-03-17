@@ -11,8 +11,10 @@ public class Bubble : MonoBehaviour
 
     [Header("Bubble")]
     float bubbleMagnitude;
-    [SerializeField] [Range(1, 2)] float maxRangeDistruction;
-    [SerializeField] [Range(1, 2)] float minRangeDistruction;
+    float randMagXY;
+    Vector3 newRandomMag;
+    [SerializeField]  float maxRangeDistruction;
+    [SerializeField]  float minRangeDistruction;
 
     [Header("Bubble Spawn Boundaries")]
     [SerializeField] float padding = 0.1f;
@@ -22,8 +24,8 @@ public class Bubble : MonoBehaviour
     float yMax;
 
     [Header("Bubble Random Spawn")]
-    float randomX;
-    float randomY;
+    float randomPosX;
+    float randomPosY;
     Vector3 newRandomPos;
 
     [Header("Circle Scale Magnitude")]
@@ -42,8 +44,7 @@ public class Bubble : MonoBehaviour
 
     void Start()
     {
-        bubbleMagnitude = transform.localScale.magnitude + maxRangeDistruction;
-
+        Debug.Log(transform.localScale.magnitude);
         //Set up bubble spawners
         SetUpBubbleSpawnBoundaries();
 
@@ -52,6 +53,11 @@ public class Bubble : MonoBehaviour
 
     void Update()
     {
+        bubbleMagnitude = transform.localScale.x;
+
+        minRangeDistruction = bubbleMagnitude - 0.5f;
+        maxRangeDistruction = bubbleMagnitude;
+
         //Every frame checks circle scale magnitude 
         ActualCircleLocalScaleMagnitude();
 
@@ -73,18 +79,24 @@ public class Bubble : MonoBehaviour
         {
             //We can clearly see actual circle local scale magnitude after we release left mouse button
             Debug.Log(actualCircleLocalScaleMagnitude);
+            Debug.Log(bubbleMagnitude);
             Debug.Log(isIntersects);
             //Debug.Log(isBubbleDestroyed);
             //If player intersects and hit min or max range distruction bubble will be destroyed
-            if (isIntersects == true && (ActualCircleLocalScaleMagnitude() > minRangeDistruction) && (ActualCircleLocalScaleMagnitude() < bubbleMagnitude))
+            if (isIntersects == true && (ActualCircleLocalScaleMagnitude() > minRangeDistruction) && (ActualCircleLocalScaleMagnitude() < maxRangeDistruction))
             {
                 gameObject.transform.position = SetUpNewRandomPosition();
+
+                
+                Debug.Log("max" + maxRangeDistruction);
+                SetUpNewRandomMagnitude();
+                Debug.Log("min" + minRangeDistruction);
             }
         }
     }
     private float ActualCircleLocalScaleMagnitude()
     {
-        actualCircleLocalScaleMagnitude = circle.transform.localScale.magnitude;
+        actualCircleLocalScaleMagnitude = circle.transform.localScale.x;
         return actualCircleLocalScaleMagnitude;
     }
 
@@ -114,12 +126,20 @@ public class Bubble : MonoBehaviour
 
     private Vector3 SetUpNewRandomPosition()
     {
-        randomX = Random.Range(xMin, xMax);
-        randomY = Random.Range(yMin, yMax);
-        newRandomPos = new Vector3(randomX, randomY, transform.position.z);
+        randomPosX = Random.Range(xMin, xMax);
+        randomPosY = Random.Range(yMin, yMax);
+        newRandomPos = new Vector3(randomPosX, randomPosY, transform.position.z);
 
         return newRandomPos;
     } 
+
+    private void SetUpNewRandomMagnitude()
+    {
+        randMagXY = Random.Range(2f, 3f);
+        newRandomMag = new Vector3(randMagXY, randMagXY, transform.position.z);
+
+        gameObject.transform.localScale = newRandomMag;
+    }
 
     public bool BubbleChangePosition()
     {
@@ -133,7 +153,7 @@ public class Bubble : MonoBehaviour
         {
             playerHealth -= healthDecreaseRate * Time.deltaTime;
             isBubblePosChange = false;
-            Debug.Log(playerHealth);
+            //Debug.Log(playerHealth);
         }
         return isBubblePosChange;
     }
