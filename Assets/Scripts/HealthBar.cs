@@ -12,7 +12,7 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         slider = GetComponent<Slider>();
-        isBubblePosChange = FindObjectOfType<Bubble>().BubbleChangePosition();
+        isBubblePosChange = FindObjectOfType<Bubble>().PlayerHealthScaling();
     }
 
     // Update is called once per frame

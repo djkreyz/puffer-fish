@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     [Header("Circle")]
     [SerializeField] Vector3 maxCircleLocalScale;
+    [SerializeField] float circleScaleSpeed = 0.3f;
     float maxCirleLocalScaleMagnitude;
 
     // Start is called before the first frame update
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
         if (isMouseLeftButtonDown == true && (actualCircleLocalScaleMagnitude < maxCirleLocalScaleMagnitude))
         {
             StopCoroutine(CircleDestroyDelay());
-            circleObject.transform.localScale += new Vector3(0.3f, 0.3f, 0) * Time.deltaTime;
+            circleObject.transform.localScale += new Vector3(circleScaleSpeed, circleScaleSpeed, 0) * Time.deltaTime;
         }
         if (isMouseLeftButtonDown == false)
         {

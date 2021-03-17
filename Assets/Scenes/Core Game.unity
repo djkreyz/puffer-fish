@@ -231,9 +231,9 @@ MonoBehaviour:
   player: {fileID: 1674505921}
   bubbleCenter: {fileID: 294324051}
   circle: {fileID: 624713018}
-  maxRangeDistruction: 1.769
-  minRangeDistruction: 1.7
-  padding: 1.6
+  maxRangeDestruction: 0
+  minRangeDestruction: 0
+  padding: 1.45
   playerGameObject: {fileID: 1674505919}
   playerHealth: 100
   healthDecreaseRate: 1
@@ -789,6 +789,7 @@ MonoBehaviour:
   healthDecreaseRateInSec: 1
   healthIncreaseRate: 10
   maxCircleLocalScale: {x: 3, y: 3, z: 0}
+  circleScaleSpeed: 0
 --- !u!61 &1674505923
 BoxCollider2D:
   m_ObjectHideFlags: 0
