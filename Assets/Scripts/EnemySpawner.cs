@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Configuration Parameters")]
-    [SerializeField] Hook hook;
+    [SerializeField] GameObject bottle;
 
     [Header("Spawn Boundaries")]
     [SerializeField] float padding = 1;
@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
 
     //Random Spawn
     float xRandom;
-    Vector3 hookPosition;
+    Vector3 bottlePosition;
     bool isSpawned = false;
 
     //Timer Sec
@@ -30,12 +30,12 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         RandomXPosition();
-        hookPosition = new Vector3(xRandom, yMax);
+        bottlePosition = new Vector3(xRandom, yMax);
         TimerCountSec();
         if(seconds == 10 && isSpawned == false)
         {
             isSpawned = true;
-            Instantiate(hook, hookPosition, Quaternion.identity);
+            Instantiate(bottle, bottlePosition, Quaternion.identity);
         }
         if(seconds == 11)
         {
@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
         if(seconds == 15 && isSpawned == false)
         {
             isSpawned = true;
-            Instantiate(hook, hookPosition, Quaternion.identity);
+            Instantiate(bottle, bottlePosition, Quaternion.identity);
         }
     }
 
