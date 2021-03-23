@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bottle: {fileID: 7963119804775817322, guid: 141a9abd8ce6696468548d33b6968ff4, type: 3}
+  redCircle: {fileID: 8351708590749208960, guid: 6cfefa7e82fe9f54cadc68b7df5ca4a6, type: 3}
   padding: 1

@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Configuration Parameters")]
     [SerializeField] GameObject bottle;
+    [SerializeField] GameObject redCircle;
 
     [Header("Spawn Boundaries")]
     [SerializeField] float padding = 1;
@@ -30,12 +31,14 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         RandomXPosition();
-        bottlePosition = new Vector3(xRandom, yMax);
+        //-1 because circle spawn half outside the game
+        bottlePosition = new Vector3(xRandom, yMax - 1);
         TimerCountSec();
+        //Loop that spawn enemies
         if(seconds == 10 && isSpawned == false)
         {
             isSpawned = true;
-            Instantiate(bottle, bottlePosition, Quaternion.identity);
+            StartCoroutine(SpawnBottle());
         }
         if(seconds == 11)
         {
@@ -44,7 +47,16 @@ public class EnemySpawner : MonoBehaviour
         if(seconds == 15 && isSpawned == false)
         {
             isSpawned = true;
-            Instantiate(bottle, bottlePosition, Quaternion.identity);
+            StartCoroutine(SpawnBottle());
+        }
+        if (seconds == 16)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 17 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnBottle());
         }
     }
 
@@ -70,4 +82,15 @@ public class EnemySpawner : MonoBehaviour
         countSec += Time.deltaTime;
         seconds = Mathf.FloorToInt(countSec % 60);
     }
+
+    IEnumerator SpawnBottle()
+    {
+        //Instantiate red circle with animation than bottle
+        GameObject cloneRedCircle = Instantiate(redCircle, bottlePosition, Quaternion.identity);
+        Vector3 positionCloneRedCircle = cloneRedCircle.transform.position;
+        yield return new WaitForSeconds(1);
+        Instantiate(bottle, positionCloneRedCircle, Quaternion.identity);
+        Destroy(cloneRedCircle);
+    }
+
 }
