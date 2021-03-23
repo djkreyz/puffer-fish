@@ -80,9 +80,9 @@ public class Bubble : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             //We can clearly see actual circle local scale magnitude after we release left mouse button
-            Debug.Log(actualCircleLocalScaleX);
-            Debug.Log(bubbleLocalScaleX);
-            Debug.Log(isIntersects);
+            //Debug.Log(actualCircleLocalScaleX);
+            //Debug.Log(bubbleLocalScaleX);
+            //Debug.Log(isIntersects);
             //Debug.Log(isBubbleDestroyed);
             //If player intersects and hit min or max range distruction bubble will be destroyed
             if (isIntersects == true && (ActualCircleLocalScaleMagnitude() > minRangeDestruction) && (ActualCircleLocalScaleMagnitude() < maxRangeDestruction))

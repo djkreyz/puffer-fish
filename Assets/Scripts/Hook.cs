@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Hook : MonoBehaviour
 {
+    //Rope
     float actualRopeSize;
     float ropeTimer;
 
-    void Start()
-    {
-       
-    }
-
-    
     void Update()
     {
         RopeMovement();
