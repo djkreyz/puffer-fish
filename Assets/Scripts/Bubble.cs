@@ -151,13 +151,16 @@ public class Bubble : MonoBehaviour
             playerHealth += healthIncreaseRate;
             isBubblePosChange = true;
         }
+
         else
         {
             playerHealth -= healthDecreaseRate * Time.deltaTime;
             isBubblePosChange = false;
-            //Debug.Log(playerHealth);
+            
         }
+
         return isBubblePosChange;
+
     }
 
     private void DestroyPlayer()
