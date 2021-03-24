@@ -9,10 +9,13 @@ public class Bubble : MonoBehaviour
     [SerializeField] Renderer bubbleCenter;
     [SerializeField] Transform circle;
 
-    [Header("Health Bar")]
+    [Header("Player Health Bar")]
+    [SerializeField] GameObject playerGameObject;
     [SerializeField] GameObject healthBar;
+    [SerializeField] float healthDecreaseRate = 0.3f;
+    [SerializeField] float healthIncreaseRate = 1f;
     RectTransform rectTransform;
-    float scaleX = 10f;
+    float playerHealth = 10f;
 
     [Header("Range Destruction")]
     [SerializeField]  float maxRangeDestruction;
@@ -28,12 +31,6 @@ public class Bubble : MonoBehaviour
     float xMax;
     float yMin;
     float yMax;
-
-    [Header("Player Health")]
-    [SerializeField] GameObject playerGameObject;
-    [SerializeField] float playerHealth = 100f;
-    [SerializeField] float healthDecreaseRate = 1f;
-    [SerializeField] float healthIncreaseRate = 20f;
 
     //Random position
     float randomPosX;
@@ -71,7 +68,7 @@ public class Bubble : MonoBehaviour
         OnMouseUpDestroy();
 
         //After player health scaling 
-        PlayerHealthScaling();
+        BubbleChangePosition();
 
         //Min and max range destruction of bubble (Count only X, because Y is same number.
         //Also this is the only way to compare bubble and circle size)
@@ -152,18 +149,16 @@ public class Bubble : MonoBehaviour
         gameObject.transform.localScale = newRandomMag;
     }
 
-    public bool PlayerHealthScaling()
+    public bool BubbleChangePosition()
     {
         if (currentBubblePos != newRandomPos)
         {
             currentBubblePos = newRandomPos;
-            playerHealth += healthIncreaseRate;
             isBubblePosChange = true;
         }
 
         else
         {
-            playerHealth -= healthDecreaseRate * Time.deltaTime;
             isBubblePosChange = false;
         }
 
@@ -176,13 +171,13 @@ public class Bubble : MonoBehaviour
         if (isBubblePosChange == true)
         {
             Debug.Log("Hey!");
-            scaleX += 1f;
-            rectTransform.localScale = new Vector3(scaleX, rectTransform.localScale.y, rectTransform.localScale.z);
+            playerHealth += healthIncreaseRate;
+            rectTransform.localScale = new Vector3(playerHealth, rectTransform.localScale.y, rectTransform.localScale.z);
         }
         if (isBubblePosChange == false)
         {
-            scaleX -= 0.3f * Time.deltaTime;
-            rectTransform.localScale = new Vector3(scaleX, rectTransform.localScale.y, rectTransform.localScale.z);
+            playerHealth -= healthDecreaseRate * Time.deltaTime;
+            rectTransform.localScale = new Vector3(playerHealth, rectTransform.localScale.y, rectTransform.localScale.z);
         }
     }
 
