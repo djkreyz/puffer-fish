@@ -9,6 +9,11 @@ public class Bubble : MonoBehaviour
     [SerializeField] Renderer bubbleCenter;
     [SerializeField] Transform circle;
 
+    [Header("Health Bar")]
+    [SerializeField] GameObject healthBar;
+    RectTransform rectTransform;
+    float scaleX = 10f;
+
     [Header("Range Destruction")]
     [SerializeField]  float maxRangeDestruction;
     [SerializeField]  float minRangeDestruction;
@@ -45,6 +50,8 @@ public class Bubble : MonoBehaviour
 
     void Start()
     {
+        rectTransform = healthBar.GetComponent<RectTransform>();
+
         Debug.Log(transform.localScale.magnitude);
         //Set up bubble spawners
         SetUpBubbleSpawnBoundaries();
@@ -72,6 +79,8 @@ public class Bubble : MonoBehaviour
 
         //Destroys player gameobject after his HP reach 0
         DestroyPlayer();
+
+        HealthBar();
     }
 
     private void OnMouseUpDestroy()
@@ -156,11 +165,25 @@ public class Bubble : MonoBehaviour
         {
             playerHealth -= healthDecreaseRate * Time.deltaTime;
             isBubblePosChange = false;
-            
         }
 
         return isBubblePosChange;
 
+    }
+
+    public void HealthBar()
+    {
+        if (isBubblePosChange == true)
+        {
+            Debug.Log("Hey!");
+            scaleX += 1f;
+            rectTransform.localScale = new Vector3(scaleX, rectTransform.localScale.y, rectTransform.localScale.z);
+        }
+        if (isBubblePosChange == false)
+        {
+            scaleX -= 0.3f * Time.deltaTime;
+            rectTransform.localScale = new Vector3(scaleX, rectTransform.localScale.y, rectTransform.localScale.z);
+        }
     }
 
     private void DestroyPlayer()
