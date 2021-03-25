@@ -14,6 +14,7 @@ public class Bubble : MonoBehaviour
     [SerializeField] GameObject healthBar;
     [SerializeField] float healthDecreaseRate = 0.3f;
     [SerializeField] float healthIncreaseRate = 1f;
+    SceneLoader loadGameOverScene;
     RectTransform rectTransform;
     float playerHealth = 10f;
 
@@ -47,6 +48,8 @@ public class Bubble : MonoBehaviour
 
     void Start()
     {
+        loadGameOverScene = FindObjectOfType<SceneLoader>();
+
         rectTransform = healthBar.GetComponent<RectTransform>();
 
         Debug.Log(transform.localScale.magnitude);
@@ -185,7 +188,8 @@ public class Bubble : MonoBehaviour
     {
         if (playerHealth <= 0)
         {
-            Destroy(playerGameObject);
+            loadGameOverScene.LoadNextScene();
+            //Destroy(playerGameObject);
         }
     }
         
