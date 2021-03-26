@@ -69,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
         {
             isSpawned = false;
         }
-        if (seconds == 5 && isSpawned == false)
+        if (seconds == 20 && isSpawned == false)
         {
             isSpawned = true;
             StartCoroutine(SpawnCrab());
@@ -94,8 +94,8 @@ public class EnemySpawner : MonoBehaviour
         xMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + padding;
         xMax = gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - padding;
 
-        yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + padding;
-        yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - padding;
+        yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
+        yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
     }
 
     private void TimerCountSec()

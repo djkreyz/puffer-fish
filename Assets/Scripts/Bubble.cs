@@ -8,6 +8,7 @@ public class Bubble : MonoBehaviour
     [SerializeField] Renderer player;
     [SerializeField] Renderer bubbleCenter;
     [SerializeField] Transform circle;
+    [SerializeField] ParticleSystem bubbleParticles;
 
     [Header("Player Health Bar")]
     [SerializeField] GameObject playerGameObject;
@@ -97,6 +98,7 @@ public class Bubble : MonoBehaviour
             if (isIntersects == true && (ActualCircleLocalScaleMagnitude() > minRangeDestruction) && (ActualCircleLocalScaleMagnitude() < maxRangeDestruction))
             {
                 gameObject.transform.position = SetUpNewRandomPosition();
+                BubbleParticleSystem();
 
                 
                 Debug.Log("max" + maxRangeDestruction);
@@ -200,6 +202,12 @@ public class Bubble : MonoBehaviour
 
         minRangeDestruction = bubbleLocalScaleX - 0.5f;
         maxRangeDestruction = bubbleLocalScaleX;
+    }
+
+    private void BubbleParticleSystem()
+    {
+        var particleClone = Instantiate(bubbleParticles, gameObject.transform.position, Quaternion.identity);
+        Destroy(particleClone, 1f);
     }
 
 }
