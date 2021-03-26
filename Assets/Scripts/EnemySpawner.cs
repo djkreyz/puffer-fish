@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Configuration Parameters")]
     [SerializeField] GameObject bottle;
+    [SerializeField] GameObject crab;
     [SerializeField] GameObject redCircle;
 
     [Header("Spawn Boundaries")]
@@ -17,7 +18,9 @@ public class EnemySpawner : MonoBehaviour
 
     //Random Spawn
     float xRandom;
+    float yRandom;
     Vector3 bottlePosition;
+    Vector3 crabPosition;
     bool isSpawned = false;
 
     //Timer Sec
@@ -31,8 +34,12 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         RandomXPosition();
+        RandomYPosition();
         //-1 because circle spawn half outside the game
         bottlePosition = new Vector3(xRandom, yMax - 1);
+
+        crabPosition = new Vector3(xMin, yRandom);
+
         TimerCountSec();
         //Loop that spawn enemies
         if(seconds == 10 && isSpawned == false)
@@ -58,11 +65,25 @@ public class EnemySpawner : MonoBehaviour
             isSpawned = true;
             StartCoroutine(SpawnBottle());
         }
+        if (seconds == 18)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 5 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnCrab());
+        }
     }
 
     private void RandomXPosition()
     {
         xRandom = Random.Range(xMin, xMax);
+    }
+
+    private void RandomYPosition()
+    {
+        yRandom = Random.Range(yMin, yMax);
     }
 
     private void SetUpEnemySpawnBoundaries()
@@ -73,8 +94,8 @@ public class EnemySpawner : MonoBehaviour
         xMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + padding;
         xMax = gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - padding;
 
-        yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
-        yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
+        yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + padding;
+        yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - padding;
     }
 
     private void TimerCountSec()
@@ -90,6 +111,16 @@ public class EnemySpawner : MonoBehaviour
         Vector3 positionCloneRedCircle = cloneRedCircle.transform.position;
         yield return new WaitForSeconds(1);
         Instantiate(bottle, positionCloneRedCircle, Quaternion.identity);
+        Destroy(cloneRedCircle);
+    }
+
+    IEnumerator SpawnCrab()
+    {
+        //Instantiate red circle with animation than crab
+        GameObject cloneRedCircle = Instantiate(redCircle, crabPosition, Quaternion.identity);
+        Vector3 positionCloneRedCircle = cloneRedCircle.transform.position;
+        yield return new WaitForSeconds(1);
+        Instantiate(crab, positionCloneRedCircle, Quaternion.identity);
         Destroy(cloneRedCircle);
     }
 
