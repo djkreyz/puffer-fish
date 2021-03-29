@@ -163,7 +163,7 @@ MonoBehaviour:
   healthIncreaseRate: 1
   maxRangeDestruction: 0
   minRangeDestruction: 0
-  padding: 1.6
+  padding: 2.5
 --- !u!212 &213608061
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -818,10 +818,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 983331363, guid: 68f8ded8de55b114f9d44d7c5a93b1d9, type: 3}
-      propertyPath: crab
-      value: 
-      objectReference: {fileID: 2685679058018671542, guid: f9cea705bbd9cb844972fb68c91cd95f, type: 3}
     - target: {fileID: 152302433016769149, guid: 68f8ded8de55b114f9d44d7c5a93b1d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

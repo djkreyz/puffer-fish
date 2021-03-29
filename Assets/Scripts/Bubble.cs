@@ -206,7 +206,7 @@ public class Bubble : MonoBehaviour
     private void BubbleParticleSystem()
     {
         var particleClone = Instantiate(bubbleParticles, gameObject.transform.position, Quaternion.identity);
-        Destroy(particleClone, 1f);
+        Destroy(particleClone.gameObject, 3f);
     }
 
 }

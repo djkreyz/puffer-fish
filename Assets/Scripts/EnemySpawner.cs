@@ -5,9 +5,10 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Configuration Parameters")]
+    [SerializeField] List<GameObject> crab;
     [SerializeField] GameObject bottle;
-    [SerializeField] GameObject crab;
     [SerializeField] GameObject redCircle;
+    int crabIndex;
 
     [Header("Spawn Boundaries")]
     [SerializeField] float padding = 1;
@@ -120,7 +121,9 @@ public class EnemySpawner : MonoBehaviour
         GameObject cloneRedCircle = Instantiate(redCircle, crabPosition, Quaternion.identity);
         Vector3 positionCloneRedCircle = cloneRedCircle.transform.position;
         yield return new WaitForSeconds(1);
-        Instantiate(crab, positionCloneRedCircle, Quaternion.identity);
+        crabIndex = Random.Range(0, crab.Count);
+        Instantiate(crab[crabIndex], positionCloneRedCircle, Quaternion.identity);
+        Debug.Log(crabIndex);
         Destroy(cloneRedCircle);
     }
 
