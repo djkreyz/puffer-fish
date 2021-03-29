@@ -99,8 +99,7 @@ public class Bubble : MonoBehaviour
             {
                 gameObject.transform.position = SetUpNewRandomPosition();
                 BubbleParticleSystem();
-
-                
+     
                 Debug.Log("max" + maxRangeDestruction);
                 SetUpNewRandomMagnitude();
                 Debug.Log("min" + minRangeDestruction);

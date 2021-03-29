@@ -156,7 +156,7 @@ MonoBehaviour:
   player: {fileID: 1674505921}
   bubbleCenter: {fileID: 294324051}
   circle: {fileID: 624713018}
-  bubbleParticles: {fileID: 6772636242676651493, guid: e55e0f31807eff74fbafa3095352dfdb, type: 3}
+  bubbleParticles: {fileID: 2947552788631874165, guid: d93f34f2eec159e479bcc6c15b4c86ce, type: 3}
   playerGameObject: {fileID: 1674505919}
   healthBar: {fileID: 892720282}
   healthDecreaseRate: 0.3
