@@ -56,6 +56,7 @@ public class EnemySpawner : MonoBehaviour
         {
             isSpawned = true;
             StartCoroutine(SpawnBottle());
+            StartCoroutine(SpawnCrab());
         }
         if (seconds == 16)
         {
