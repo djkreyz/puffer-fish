@@ -47,5 +47,6 @@ MonoBehaviour:
   - {fileID: 2685679058018671542, guid: f9cea705bbd9cb844972fb68c91cd95f, type: 3}
   - {fileID: 2685679058018671542, guid: 60e731ab1a7f50f42845a9b6d3eb9360, type: 3}
   bottle: {fileID: 7963119804775817322, guid: 141a9abd8ce6696468548d33b6968ff4, type: 3}
+  stone: {fileID: 2338121673284136422, guid: dd38db235cb7f4c4fa569f2417e43b85, type: 3}
   redCircle: {fileID: 8351708590749208960, guid: 6cfefa7e82fe9f54cadc68b7df5ca4a6, type: 3}
   padding: 1

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2685679058018671540}
   - component: {fileID: 2685679058018671541}
   - component: {fileID: -1616769340134567655}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crab_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
-  - {fileID: 4834320208333876619, guid: dd650d3e0ef62804998b73534ec0af46, type: 3}
-  - {fileID: 3511452493950211012, guid: 06d4945033ea929458d9fa655c804b6c, type: 3}
+  - {fileID: 9168479081788282835, guid: dd650d3e0ef62804998b73534ec0af46, type: 3}
+  - {fileID: 1597863808785778350, guid: 06d4945033ea929458d9fa655c804b6c, type: 3}
 --- !u!50 &2685679058018671541
 Rigidbody2D:
   serializedVersion: 4

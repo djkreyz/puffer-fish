@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7963119804775817325}
   - component: {fileID: 5091559345683394745}
   - component: {fileID: -830081952685870116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,4 +144,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e5297ad757549499d026fc001e7c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}

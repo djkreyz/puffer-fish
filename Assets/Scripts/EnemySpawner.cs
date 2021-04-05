@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Configuration Parameters")]
     [SerializeField] List<GameObject> crab;
     [SerializeField] GameObject bottle;
+    [SerializeField] GameObject stone;
     [SerializeField] GameObject redCircle;
     int crabIndex;
 
@@ -21,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
     float xRandom;
     float yRandom;
     Vector3 bottlePosition;
+    Vector3 stonePosition;
     Vector3 crabPosition;
     bool isSpawned = false;
 
@@ -39,11 +41,22 @@ public class EnemySpawner : MonoBehaviour
         //-1 because circle spawn half outside the game
         bottlePosition = new Vector3(xRandom, yMax - 1);
 
-        crabPosition = new Vector3(xMin, yRandom);
+        stonePosition = new Vector3(xRandom, yMax - 1);
+
+        crabPosition = new Vector3(xMin, yRandom - 1);
 
         TimerCountSec();
         //Loop that spawn enemies
-        if(seconds == 10 && isSpawned == false)
+        if (seconds == 5 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnStone());
+        }
+        if (seconds == 6)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 10 && isSpawned == false)
         {
             isSpawned = true;
             StartCoroutine(SpawnBottle());
@@ -76,6 +89,102 @@ public class EnemySpawner : MonoBehaviour
             isSpawned = true;
             StartCoroutine(SpawnCrab());
         }
+        if (seconds == 21)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 25 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnStone());
+        }
+        if (seconds == 26)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 27 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnBottle());
+        }
+        if (seconds == 28)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 29 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnBottle());
+        }
+        if (seconds == 30)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 34 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnStone());
+            StartCoroutine(SpawnCrab());
+        }
+        if (seconds == 35)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 39 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnBottle());
+        }
+        if (seconds == 40)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 41 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnBottle());
+        }
+        if (seconds == 42)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 45 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnCrab());
+        }
+        if (seconds == 46)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 50 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnStone());
+        }
+        if (seconds == 51)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 52 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnBottle());
+        }
+        if (seconds == 53)
+        {
+            isSpawned = false;
+        }
+        if (seconds == 57 && isSpawned == false)
+        {
+            isSpawned = true;
+            StartCoroutine(SpawnCrab());
+        }
+        if (seconds == 58)
+        {
+            isSpawned = false;
+        }
+
     }
 
     private void RandomXPosition()
@@ -113,6 +222,16 @@ public class EnemySpawner : MonoBehaviour
         Vector3 positionCloneRedCircle = cloneRedCircle.transform.position;
         yield return new WaitForSeconds(1);
         Instantiate(bottle, positionCloneRedCircle, Quaternion.identity);
+        Destroy(cloneRedCircle);
+    }
+
+    IEnumerator SpawnStone()
+    {
+        //Instantiate red circle with animation than bottle
+        GameObject cloneRedCircle = Instantiate(redCircle, bottlePosition, Quaternion.identity);
+        Vector3 positionCloneRedCircle = cloneRedCircle.transform.position;
+        yield return new WaitForSeconds(1);
+        Instantiate(stone, positionCloneRedCircle, Quaternion.identity);
         Destroy(cloneRedCircle);
     }
 
